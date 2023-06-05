@@ -43,4 +43,26 @@
 # == YOUR CODE ==
 
 class PasswordManager():
-    pass
+    def __init__(self):
+        passwords = {}
+        self.passwords = passwords
+        pass
+    
+
+    def add(self,service_name,password):
+        self.service_name = service_name
+        self.password = password
+        new_service = {service_name:password}
+        special_characters = ["!","@","$","%","&"]
+        if len(password) >= 8 and any(char in special_characters for char in password):
+            self.passwords.update(new_service)
+
+    def get_for_service(self, service_name):
+            return self.passwords.get(service_name,None)
+
+    def list_services(self):
+        services = []
+        for key in self.passwords:
+            if self.passwords[key] != None:
+                services.append(key)
+        return services

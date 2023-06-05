@@ -52,6 +52,9 @@ class Greeter():
 #   > animal = Animal()
 #   > animal
 #   <Animal object at 0x7f8b8c0b8e80>
+class Animal():
+    def __init__(self):
+        return
 
 
 
@@ -65,6 +68,9 @@ class Greeter():
 #   > vehicle = Vehicle()
 #   > vehicle
 #   <Vehicle object at 0x7f8b8c0b8e80>
+class Vehicle():
+    def __init__(self):
+        return
 
 
 
@@ -80,7 +86,12 @@ class Greeter():
 #   > cat = Cat()
 #   > cat.speak()
 #   'miaow'
+class Cat():
+    def __init__(self):
+        return
 
+    def speak(self):
+        return "miaow"
 
 
 # Class name: Dog
@@ -95,6 +106,12 @@ class Greeter():
 #   > dog = Dog()
 #   > dog.speak()
 #   'woof'
+class Dog():
+    def __init__(self):
+        return
+
+    def speak(self):
+        return "woof"
 
 
 
@@ -115,6 +132,16 @@ class Greeter():
 #   'HELLO'
 #   > string_formatter.lower_case('HELLO')
 #   'hello'
+
+class StringFormatter():
+    def __init__(self):
+        return
+        
+    def block_caps(self, string):
+        return string.upper()
+        
+    def lower_case(self,string):
+        return string.lower()
 
 
 
@@ -145,7 +172,21 @@ class Greeter():
 #   1
 #   > calculator.divide(6, 2)
 #   3.0
+class Calculator():
+    def __init__(self):
+        return
 
+    def add(self,num1,num2):
+        return num1+num2
+
+    def multiply(self,num1,num2):
+        return num1*num2
+
+    def subtract(self,num1,num2):
+        return num1-num2
+
+    def divide(self,num1,num2):
+        return num1/num2
 
 
 # Class name: Apprentice
@@ -172,6 +213,13 @@ class Greeter():
 #   > apprentice.format_details()
 #   'Rita Smith, June 2030'
 
+class Apprentice():
+    def __init__(self, name, cohort):
+        self.name = name
+        self.cohort = cohort
+
+    def format_details(self):
+        return f"{self.name}, {self.cohort}"
 
 
 # Class name: Cohort
@@ -205,5 +253,15 @@ class Greeter():
 #   > cohort.calculate_duration()
 #   92
 
+from datetime import datetime
+
+class Cohort():
+    def __init__(self, name, start_date, end_date):
+        self.name = name
+        self.start_date = datetime.strptime(start_date,"%Y-%m-%d").date()
+        self.end_date = datetime.strptime(end_date,"%Y-%m-%d").date()
+
+    def calculate_duration(self):
+        return (self.end_date - self.start_date).days
 
 

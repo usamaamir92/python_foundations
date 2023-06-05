@@ -16,103 +16,123 @@
 
 # == LIST EXERCISES ==
 
-# Method name: first_element
+# 1Method name: first_element
 # Purpose: returns the first element of the given list
 # Arguments: one list
 # Example:
 #   Call:    first_element([1, 2, 3])
 #   Returns: 1
+def first_element(list):
+    return list[0]
 
 
-
-# Method name: second_element
+# 2Method name: second_element
 # Purpose: returns the second element of the given list
 # Arguments: one list
 # Example:
 #   Call:    second_element([1, 2, 3])
 #   Returns: 2
+def second_element(list):
+    return list[1]
 
 
 
-# Method name: last_element
+# 3Method name: last_element
 # Purpose: returns the last element of the given list
 # Arguments: one list
 # Example:
 #   Call:    last_element([1, 2, 3])
 #   Returns: 3
+def last_element(list):
+    return list[-1]
 
 
-
-# Method name: first_two_elements
+# 4Method name: first_two_elements
 # Purpose: returns the first two elements of the given list
 # Arguments: one list
 # Example:
 #   Call:    first_two_elements([1, 2, 3])
 #   Returns: [1, 2]
+def first_two_elements(list):
+    return list[0:2]
 
 
 
-# Method name: first_three_elements
+# 5Method name: first_three_elements
 # Purpose: returns the first three elements of the given list
 # Arguments: one list
 # Example:
 #   Call:    first_three_elements([1, 2, 3, 4])
 #   Returns: [1, 2, 3]
+def first_three_elements(list):
+    return list[0:3]
 
 
-
-# Method name: total
+# 6Method name: total
 # Purpose: returns the sum of all the elements in the given list
 # Arguments: one list
 # Example:
 #   Call:    total([1, 2, 3])
 #   Returns: 6
+def total(list):
+    return sum(list)
 
 
-
-# Method name: lowest_number
+# 7Method name: lowest_number
 # Purpose: returns the lowest number in the given list
 # Arguments: one list
 # Example:
 #   Call:    lowest_number([4, 2, 6])
 #   Returns: 2
+def lowest_number(list):
+    return min(list)
 
 
-
-# Method name: highest_number
+# 8Method name: highest_number
 # Purpose: returns the highest number in the given list
 # Arguments: one list
 # Example:
 #   Call:    highest_number([4, 6, 2])
 #   Returns: 6
+def highest_number(list):
+    return max(list)
 
 
-
-# Method name: the_beatles
+# 9Method name: the_beatles
 # Purpose: returns the list ['john', 'paul', 'george', 'ringo']
 # Arguments: none
 # Example:
 #   Call:    the_beatles()
 #   Returns: ['john', 'paul', 'george', 'ringo']
+def the_beatles():
+    list = ["john","paul","george","ringo"]
+    return list
 
 
-
-# Method name: i_joined_the_beatles
+# 10Method name: i_joined_the_beatles
 # Purpose: adds the given name to the list ['john', 'paul', 'george', 'ringo']
 # Arguments: one string
 # Example:
 #   Call:    i_joined_the_beatles('yoko')
 #   Returns: ['john', 'paul', 'george', 'ringo', 'yoko']
+def i_joined_the_beatles(name):
+    the_beatles = ['john', 'paul', 'george', 'ringo']
+    the_beatles.append(name)
+    return the_beatles
+    #return ["john","paul","george","ringo",string]
 
 
-
-# Method name: we_joined_the_beatles
+# 11Method name: we_joined_the_beatles
 # Purpose: adds the given names to the list ['john', 'paul', 'george', 'ringo']
 # Arguments: one list
 # Example:
 #   Call:    we_joined_the_beatles(['yoko', 'stuart'])
 #   Returns: ['john', 'paul', 'george', 'ringo', 'yoko', 'stuart']
-
+def we_joined_the_beatles(name):
+    the_beatles = ['john', 'paul', 'george', 'ringo']
+    the_beatles.extend(name)
+    return the_beatles
+    #newlist = ["john","paul","george","ringo"].append(names)
 
 
 # Method name: remove_nones_from_list
@@ -121,6 +141,12 @@
 # Example:
 #   Call:    remove_nones_from_list([1, None, 2, None, 3])
 #   Returns: [1, 2, 3]
+def remove_nones_from_list(list1):
+    newlist = []
+    for item in list1:
+        if item != None:
+            newlist.append(item)
+    return newlist
 
 
 
@@ -130,6 +156,8 @@
 # Example:
 #   Call:    double_list([1, 2, 3])
 #   Returns: [1, 2, 3, 1, 2, 3]
+def double_list(list):
+    return list*2
 
 
 
@@ -139,7 +167,12 @@
 # Example:
 #   Call:    unique_elements([1, 2, 1, 3, 2, 3])
 #   Returns: [1, 2, 3]
-
+def unique_elements(list):
+    counter = []
+    for num in list:
+        if num not in counter:
+            counter.append(num)
+    return counter
 
 
 # Method name: add_to_list
@@ -148,6 +181,9 @@
 # Example:
 #   Call:    add_to_list(["a", "b", "c"], "d")
 #   Returns: ["a", "b", "c", "d"]
+def add_to_list(list1,element):
+    list1.append(element)
+    return list1
 
 
 
@@ -160,7 +196,10 @@
 # Example:
 #   Call:    new_band_member({"bass": "flea"})
 #   Returns: {"vocalist": "miss piggy", "lead_guitar": "scooter", "bass": "flea"}
-
+def new_band_member(new_member):
+    band = {"vocalist":"miss piggy","lead_guitar":"scooter"}
+    band.update(new_member)
+    return band
 
 
 # Method name: all_values
@@ -169,6 +208,8 @@
 # Example:
 #   Call:    all_values({"a": 1, "b": 2, "c": 3})
 #   Returns: [1, 2, 3]
+def all_values(dict):
+    return dict.values()
 
 
 
@@ -178,6 +219,8 @@
 # Example:
 #   Call:    all_keys({"a": 1, "b": 2, "c": 3})
 #   Returns: ["a", "b", "c"]
+def all_keys(dict):
+    return dict.keys()
 
 
 
@@ -187,6 +230,12 @@
 # Example:
 #   Call:    remove_nones_from_dictionary({"a": 1, "b": None, "c": 3})
 #   Returns: {"a": 1, "c": 3}
+def remove_nones_from_dictionary(dict):
+    for key in dict.copy():
+        if dict.copy()[key] == None:
+            dict.pop(key)
+    return dict
+            
 
 
 
@@ -197,4 +246,8 @@
 # Example:
 #   Call:    touch_in('Aldgate East', '2022/01/30 17:12')
 #   Returns: {'entrypoint': 'Aldgate East', 'time': '2022/01/30 17:12'}
-
+def touch_in(station,time):
+    dict = {}
+    dict["entrypoint"] = station
+    dict["time"] = time
+    return dict
