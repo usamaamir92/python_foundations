@@ -64,6 +64,25 @@
 #   > greeter.good_morning('Bobby')
 #   'Good morning, Bobby!'
 
+class Greeter():
+    def __init__(self):
+        return
+
+    def hello(self,name):
+        self.name = name
+        return f"Hello, {self.name}!"
+
+    def goodbye(self,name):
+        self.name = name
+        return f"Goodbye, {self.name}!"
+
+    def good_night(self,name):
+        self.name = name
+        return f"Good night, {self.name}!"
+
+    def good_morning(self,name):
+        self.name = name
+        return f"Good morning, {self.name}!"
 
 
 # Class name: Basket
@@ -84,6 +103,18 @@
 #   > basket.add('orange')
 #   > basket.list_items()
 #   ['apple', 'banana', 'orange']
+
+class Basket():
+    def __init__(self):
+        basket = []
+        self.basket = basket
+        return
+    
+    def add(self,string):
+        self.basket.append(string)
+
+    def list_items(self):
+        return self.basket
 
 
 
@@ -120,6 +151,32 @@
 #   > calculator.list_history()
 #   [3, 12, -1, 0.875]
 
+class Calculator():
+    def __init__(self):
+        return
+    
+    def add(self,num1,num2):
+        added = num1+num2
+        self.added = added
+        return num1+num2
+
+    def multiply(self,num1,num2):
+        multiplied = num1*num2
+        self.multiplied = multiplied
+        return num1*num2
+    
+    def subtract(self,num1,num2):
+        subtracted = num1-num2
+        self.subtracted = subtracted
+        return num1-num2
+    
+    def divide(self,num1,num2):
+        divided = num1/num2
+        self.divided = divided
+        return num1/num2
+
+    def list_history(self):
+        return [self.added,self.multiplied,self.subtracted,self.divided]
 
 
 # Class name: Cohort
@@ -145,6 +202,22 @@
 #   [{'name' : 'Jo', 'employer' : 'NASA'}, {'name' : 'Alex', 'employer' : 'NASA'}, {'name' : 'Bobby', 'employer' : 'Google'}]
 #   > cohort.list_employed_by('NASA')
 #   [{'name' : 'Jo', 'employer' : 'NASA'}, {'name' : 'Alex', 'employer' : 'NASA'}]
+
+class Cohort():
+
+    def __init__(self):
+        students = []
+        self.students = students
+
+    def add_student(self,new_student):
+        self.students.append(new_student)
+
+    def list_students(self):
+        return self.students
+
+    def list_employed_by(self,employer):
+        return [dict for dict in self.students if dict["employer"]==employer]
+
 
 
 
@@ -182,4 +255,17 @@
 #   > person.get_pets()
 #   'Alex has 3 pets: a cat called Arthur, a dog called Judith, a goldfish called Gwen'
 
+class Person():
+    def __init__(self,person):
+        self.person = person
+
+    def get_work_address(self):
+        return f"{self.person['addresses'][0]['building']} {self.person['addresses'][0]['street']}"
+
+    def get_home_address(self):
+        return f"{self.person['addresses'][1]['building']} {self.person['addresses'][1]['street']}"
+
+    def get_pets(self):
+        pet_list = [(item['animal'],item['name']) for item in self.person['pets']]
+        return f"{self.person['name']} has {len(self.person['pets'])} pets:" + ",".join([f" a {item[0]} called {item[1]}" for item in pet_list])
 

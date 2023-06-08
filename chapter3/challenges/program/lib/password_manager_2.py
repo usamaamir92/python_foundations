@@ -69,4 +69,47 @@
 
 from datetime import datetime
 class PasswordManager2():
-    pass
+
+    def __init__(self):
+        passwords = {}
+        self.passwords = passwords
+
+    def add(self,service_name,password):
+        if len(password) >= 8 and any(char in "!@$%&" for char in password) and password not in list(self.passwords.values()):
+            self.passwords[service_name] = password
+
+    def remove(self,service_name):
+        self.passwords.pop(service_name)
+
+    def update(self,service_name,password):
+        if len(password) >= 8 and any(char in "!@$%&" for char in password) and password not in list(self.passwords.values()):
+            self.passwords[service_name] = password
+
+    def list_services(self):
+        return list(self.passwords.keys())
+
+    def sort_services_by(self,str,str2=None):
+        if str == "service" and str2 == None:
+            sorted_by_service = list(self.passwords.keys())
+            sorted_by_service.sort()
+            return sorted_by_service
+        elif str == "service" and str2 == "reverse":
+            sorted_by_service = list(self.passwords.keys())
+            sorted_by_service.sort(reverse=True)
+            return sorted_by_service
+        elif str == "added_on" and str2 == None:
+            return list(self.passwords.keys())
+        elif str == "added_on" and str2 == "reverse":
+            reversed = list(self.passwords.keys())
+            reversed.reverse()
+            return reversed
+            
+
+    def get_for_service(self,service_name):
+        if service_name in list(self.passwords.keys()):
+            return self.passwords[service_name]
+        else:
+            return None
+
+
+
