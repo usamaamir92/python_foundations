@@ -1,4 +1,5 @@
 import os
+import csv
 
 # == INSTRUCTIONS ==
 #
@@ -24,7 +25,7 @@ import os
 # Notes:
 # * Use the already imported "os" module to check whether a given filename exists
 def does_file_exist(filename):
-    pass
+    return os.path.isfile(filename)
 
 # Purpose: get the contents of a given file and return them; if the file cannot be
 # found, return a nice error message instead
@@ -42,7 +43,10 @@ def does_file_exist(filename):
 # * Use readlines() to read the contents
 # * Use should use does_file_exist()
 def get_file_contents(filename):
-    pass
+    if os.path.isfile(filename):       
+        return open(filename,"r").readlines()
+    else:
+        return "This file cannot be found!"
 
 # Purpose: fetch Christmas Day (25th December) air quality data rows, and if
 # boolean argument "include_header_row" is True, return the first header row
@@ -61,7 +65,13 @@ def get_file_contents(filename):
 # * should use get_file_contents() - N.B. as should any subsequent
 # functions you write, using anything previously built if and where necessary
 def christmas_day_air_quality(filename, include_header_row):
-    pass
+    xmas_day_aq = [row for row in get_file_contents(filename) if row[:10] == "25/12/2004" or row[:4] == "Date"]
+
+    if include_header_row == True:
+        return xmas_day_aq
+    else:
+        return xmas_day_aq[1:]
+
 
 # Purpose: fetch Christmas Day average of "PT08.S1(CO)" values to 2 decimal places
 # Example:
@@ -71,7 +81,12 @@ def christmas_day_air_quality(filename, include_header_row):
 # Date;Time;CO(GT);PT08.S1(CO);NMHC(GT);C6H6(GT);PT08.S2(NMHC);NOx(GT);PT08.S3(NOx);NO2(GT);PT08.S4(NO2);PT08.S5(O3);T;RH;AH;;
 # 10/03/2004;18.00.00;2,6;1360;150;11,9;1046;166;1056;113;1692;1268;13,6;48,9;0,7578;;
 def christmas_day_average_air_quality(filename):
-    pass
+    xmas_day_aq = christmas_day_air_quality(filename,False)
+    xmas_day_aq_separated = [row.split(";") for row in xmas_day_aq]
+    PTO_values = [int(row[3]) for row in xmas_day_aq_separated]
+
+    return round(sum(PTO_values)/len(PTO_values),2)
+
 
 # Purpose: scrape all the data and calculate average values for each of the 12 months
 #          for the "PT08.S1(CO)" values, returning a dictionary of keys as integer
@@ -82,7 +97,21 @@ def christmas_day_average_air_quality(filename):
 # Notes:
 # * Data from months across multiple years should all be averaged together
 def get_averages_for_month(filename):
-    pass
+    
+    calendar = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"]
+    months = {}
+
+    for i in range (1,13):
+        calendar[i-1] = []
+        months[i] = calendar[i-1]
+        for row in get_file_contents(filename):
+            if row[3:5] == str(i):
+                months[i].append(row)
+            elif row[4] == str(i) and row[3] == "0":
+                months[i].append(row)
+        months[i] = [item.split(";") for item in months[i]]
+        months[i] = round(sum([int(item[3]) for item in months[i]])/len([int(item[3]) for item in months[i]]),2)
+    return months
 
 # Purpose: write only the rows relating to March (any year) to a new file, in the same
 # location as the original, including the header row of labels
@@ -90,7 +119,7 @@ def get_averages_for_month(filename):
 #   Call: create_march_data("AirQuality.csv")
 #   Returns: nothing, but writes header + March data to file called
 #            "AirQualityMarch.csv" in same directory as "AirQuality.csv"
-def create_march_data(filename):
+"""def create_march_data(filename):
     pass
 
 # Purpose: write monthly responses files to a new directory called "monthly_responses",
@@ -101,4 +130,4 @@ def create_march_data(filename):
 #   Returns: nothing, but files such as monthly_responses/05-2004.csv exist containing
 #            data matching responses from that month and year
 def create_monthly_responses(filename):
-    pass
+    pass"""
